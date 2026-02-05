@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Dearest Zehra</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="rain-container"></div>
+
+    <div class="card" id="mainCard">
+        <div class="birds">🐦 💖 🐦</div>
+        <h1 id="headline">Hi Zehra...</h1>
+        <p id="msg-box"></p>
+        
+        <div class="action-area" id="controls">
+            <p>Will you be mine, Zehra?</p>
+            <div class="btn-wrap">
+                <button id="yesBtn" onclick="celebrate()">YES!</button>
+                <button id="noBtn" onmouseover="teleportNo()" onclick="teleportNo()">No</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. Typewriter Effect
+        const text = "Zehra, I wanted to build something as special as you are. You make every day feel like February 14th. I have just one question...";
+        let i = 0;
+        function typing() {
+            if (i < text.length) {
+                document.getElementById("msg-box").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typing, 50);
+            }
+        }
+        window.onload = typing;
+
+        // 2. FIXED Escape Button Logic
+        function teleportNo() {
+            const noBtn = document.getElementById('noBtn');
+            // We subtract button size to keep it within view
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 50);
+            
+            noBtn.style.position = "fixed";
+            noBtn.style.left = x + "px";
+            noBtn.style.top = y + "px";
+            noBtn.style.zIndex = "999";
+        }
+
+        // 3. FIXED Rain-Heart & Celebration
+        function celebrate() {
+            const card = document.getElementById('mainCard');
+            card.innerHTML = `
+                <h1 class="3"> I Love You Zehra!</h1>
+                <div style="font-size: 4rem;">🕊️ 💍 🕊️</div>
+                <p>The best decision you've ever made! ❤️</p>
+            `;
+            card.style.background = "#ff4d6d";
+            card.style.color = "white";
+
+            // Trigger the rain
+            for (let i = 0; i < 100; i++) {
+                setTimeout(createDrop, i * 50);
+            }
+        }
+
+        function createDrop() {
+            const container = document.getElementById('rain-container');
+            const drop = document.createElement('div');
+            const items = ['❤️', '🌸', '💖', '✨', '🌹','zerra..'];
+            
+            drop.className = 'rain-item';
+            drop.innerText = items[Math.floor(Math.random() * items.length)];
+            drop.style.left = Math.random() * 100 + "vw";
+            drop.style.animationDuration = (Math.random() * 2 + 2) + "s"; 
+            
+            container.appendChild(drop);
+            
+            // Remove from DOM after animation to keep site fast
+            setTimeout(() => { drop.remove(); }, 4000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffe5ec;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+.card {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(255, 75, 110, 0.3);
+    text-align: center;
+    max-width: 400px;
+    transition: all 0.5s ease;
+    z-index: 10;
+}
+
+.birds {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    animation: bounce 2s infinite;
+}
+
+h1 { color: #d01638; }
+
+#msg-box {
+    min-height: 80px;
+    color: #444;
+    line-height: 1.5;
+}
+
+.btn-wrap {
+    margin-top: 20px;
+    position: relative;
+    height: 60px;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+
+#yesBtn {
+    background: #ff4d6d;
+    color: white;
+}
+
+#noBtn {
+    background: #555;
+    color: white;
+}
+
+/* The Rain Items */
+.rain-item {
+    position: fixed;
+    top: -50px;
+    font-size: 2rem;
+    z-index: 1;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.3{
+font-size: 3rem;
+color: #B100AA;
+}
