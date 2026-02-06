@@ -6,6 +6,23 @@
     <title>For My Zehra</title>
     <link rel="stylesheet" href="style.css">
     <style>
+		.glow-text {
+			    color: #ff4d6d;
+			    text-shadow: 0 0 10px rgba(255, 75, 110, 0.8);
+			    animation: pulse 1.5s infinite;
+			}
+			
+			@keyframes pulse {
+			    0% { transform: scale(1); }
+			    50% { transform: scale(1.05); }
+			    100% { transform: scale(1); }
+			}
+			
+			.celebration-bg {
+			    border: 3px solid #ff4d6d;
+			    background: #fff0f3;
+			}
+		
 		body {
 			margin: 0;
 			height: 100vh;
@@ -139,36 +156,56 @@
             noBtn.style.top = y + "px";
         }
 
-        function celebrate() {
-            const card = document.getElementById('mainCard');
-            card.innerHTML = `
-                <h1 class="glow-text">I Love You Zehra!</h1>
-                <div class="floating-zehra">Mein aapka Muhammed hein ❤️</div>
-                <div style="font-size: 4rem; margin: 20px 0;">🕊️ 💍 🕊️</div>
-                <p>You've made me the happiest person ever!</p>
-                <p style="font-size: 0.8rem; margin-top: 20px; opacity: 0.8;">Forever yours, Muhammed <br> --to mere pari ladki zerra...--</p>
-            `;
-            card.className = "card celebration-bg";
+let rainInterval; // Variable to store the interval
 
-            // Start the heart & flower rain
-            for (let i = 0; i < 200; i++) {
-                setTimeout(createDrop, i * 200);
-            }
-        }
+function celebrate() {
+    const card = document.getElementById('mainCard');
+    card.innerHTML = `
+        <h1 class="glow-text">I Love You Zehra!</h1>
+        <div class="floating-zehra">Mein aapka Muhammed hein ❤️</div>
+        <div style="font-size: 4rem; margin: 20px 0;">🕊️ 💍 🕊️</div>
+        <p>You've made me the happiest person ever!</p>
+        <p style="font-size: 0.8rem; margin-top: 20px; opacity: 0.8;">Forever yours, Muhammed <br> --to mere pari ladki zerra...--</p>
+    `;
+    card.className = "card celebration-bg";
 
-        function createDrop() {
-            const container = document.getElementById('rain-container');
-            const drop = document.createElement('div');
-            const items = ['❤️', '🌸', '💖', '✨', '🌹', '🦋','zerra...','❤️', '🌸', '💖', '✨', '🌹', '🦋','zerra...', '🌸', '💖',];
-            
-            drop.className = 'rain-item';
-            drop.innerText = items[Math.floor(Math.random() * items.length)];
-            drop.style.left = Math.random() * 5000 + "vw";
-            drop.style.animationDuration = (Math.random() * 2 + 3) + "s"; 
-            
-            container.appendChild(drop);
-            setTimeout(() => { drop.remove(); }, 5000);
-        }
+    // This creates an infinite loop every 150 milliseconds
+    if (!rainInterval) {
+        rainInterval = setInterval(createDrop, 150);
+    }
+}
+
+function createDrop() {
+    const container = document.getElementById('rain-container');
+    const drop = document.createElement('div');
+    
+    // Expanded list with more Valentine-themed emojis
+    const items = [
+        '❤️', '💖', '💝', '💕', '🌹', '🌷', '🌸', 
+        '✨', '🦋', '💍', '🥰', '💌', '🍫', '🧸', 
+        'zerra...', 'Muhammed ❤️ Zehra'
+    ];
+    
+    drop.className = 'rain-item';
+    drop.innerText = items[Math.floor(Math.random() * items.length)];
+    
+    // Randomize horizontal position (0 to 100% of the screen width)
+    drop.style.left = Math.random() * 100 + "vw";
+    
+    // Randomize speed so some fall faster than others
+    const duration = (Math.random() * 2 + 3);
+    drop.style.animationDuration = duration + "s"; 
+    
+    // Add a slight random size for depth
+    drop.style.fontSize = (Math.random() * 1.5 + 1) + "rem";
+    
+    container.appendChild(drop);
+    
+    // Remove the element after it finishes falling to keep the browser fast
+    setTimeout(() => { 
+        drop.remove(); 
+    }, duration * 1000);
+}
     </script>
 </body>
 </html>
