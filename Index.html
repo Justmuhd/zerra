@@ -151,8 +151,8 @@
             card.className = "card celebration-bg";
 
             // Start the heart & flower rain
-            for (let i = 0; i < 5000; i++) {
-                setTimeout(createDrop, i * 1000);
+            for (let i = 0; i < 200; i++) {
+                setTimeout(createDrop, i * 200);
             }
         }
 
@@ -167,7 +167,7 @@
             drop.style.animationDuration = (Math.random() * 2 + 3) + "s"; 
             
             container.appendChild(drop);
-            setTimeout(() => { drop.remove(); }, 10000);
+            setTimeout(() => { drop.remove(); }, 5000);
         }
     </script>
 </body>
