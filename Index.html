@@ -2,210 +2,248 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Zehra</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For My Dearest Zehra</title>
     <style>
-		.glow-text {
-			    color: #ff4d6d;
-			    text-shadow: 0 0 10px rgba(255, 75, 110, 0.8);
-			    animation: pulse 1.5s infinite;
-			}
-			
-			@keyframes pulse {
-			    0% { transform: scale(1); }
-			    50% { transform: scale(1.05); }
-			    100% { transform: scale(1); }
-			}
-			
-			.celebration-bg {
-			    border: 3px solid #ff4d6d;
-			    background: #fff0f3;
-			}
-		
-		body {
-			margin: 0;
-			height: 100vh;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			background-color: #ffe5ec;
-			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-			overflow: hidden;
-		}
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffe5ec;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            touch-action: none;
+        }
 
-		.card {
-			background: white;
-			padding: 40px;
-			border-radius: 20px;
-			box-shadow: 0 10px 30px rgba(255, 75, 110, 0.3);
-			text-align: center;
-			max-width: 400px;
-			transition: all 0.5s ease;
-			z-index: 10;
-		}
+        .card {
+            background: white;
+            padding: 20px; /* Reduced from 40px */
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 75, 110, 0.3);
+            text-align: center;
+            width: 80%; 
+            max-width: 250px; /* Decreased width */
+            min-height: 350px; /* Controlled height */
+            transition: all 0.5s ease;
+            z-index: 10;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-		.birds {
-			font-size: 3rem;
-			margin-bottom: 10px;
-			animation: bounce 2s infinite;
-		}
+        #scratch-container {
+            display: none;
+            position: relative;
+            width: 180px; /* Slightly smaller for the smaller card */
+            height: 80px;
+            margin: 10px auto;
+            background: #fff;
+            border: 2px dashed #ff4d6d;
+            border-radius: 10px;
+            overflow: hidden;
+        }
 
-		h1 { color: #d01638; }
+        #scratch-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            touch-action: none;
+        }
 
-		#msg-box {
-			min-height: 80px;
-			color: #444;
-			line-height: 1.5;
-		}
+        .secret-message {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #d01638;
+            font-weight: bold;
+            font-size: 0.9rem;
+            z-index: 1;
+        }
 
-		.btn-wrap {
-			margin-top: 20px;
-			position: relative;
-			height: 60px;
-		}
+        .glow-text {
+            color: #ff4d6d;
+            text-shadow: 0 0 10px rgba(255, 75, 110, 0.8);
+            animation: pulse 1.5s infinite;
+        }
 
-		button {
-			padding: 12px 25px;
-			font-size: 1rem;
-			border: none;
-			border-radius: 50px;
-			cursor: pointer;
-			font-weight: bold;
-			transition: transform 0.2s;
-		}
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
 
-		#yesBtn {
-			background: #ff4d6d;
-			color: white;
-		}
+        .celebration-bg {
+            border: 3px solid #ff4d6d;
+            background: #fff0f3 !important;
+        }
 
-		#noBtn {
-			background: #555;
-			color: white;
-		}
+        .birds { font-size: 2rem; margin-bottom: 5px; animation: bounce 2s infinite; }
+        h1 { color: #d01638; font-size: 1.3rem; margin: 5px 0; }
+        #msg-box { min-height: 60px; color: #444; line-height: 1.4; font-size: 0.85rem; margin-bottom: 10px; }
 
-		/* The Rain Items */
-		.rain-item {
-			position: fixed;
-			top: -50px;
-			font-size: 2rem;
-			z-index: 1;
-			animation: fall linear forwards;
-		}
+        .btn-wrap {
+            margin-top: 10px;
+            position: relative;
+            height: 50px;
+        }
 
-		@keyframes fall {
-			to {
-				transform: translateY(110vh) rotate(360deg);
-			}
-		}
+        button {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+        }
 
-		@keyframes bounce {
-			0%, 100% { transform: translateY(0); }
-			50% { transform: translateY(-15px); }
-		}
+        #yesBtn { background: #ff4d6d; color: white; margin-right: 5px; }
+        #noBtn { background: #555; color: white; }
 
-		3{
-		font-size : 3rem;
-		color: #B100AA;
-		}
+        .rain-item {
+            position: fixed;
+            top: -50px;
+            z-index: 1;
+            animation: fall linear forwards;
+            pointer-events: none;
+        }
 
+        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        
+        .signature { font-size: 0.8rem; margin-top: 10px; font-weight: bold; }
     </style>
 </head>
 <body>
+
+    <audio id="loveSong" loop>
+        <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Kevin_MacLeod/Impact/Kevin_MacLeod_-_04_-_Impact_Andante.mp3" type="audio/mpeg">
+    </audio>
 
     <div id="rain-container"></div>
 
     <div class="card" id="mainCard">
         <div class="birds">🐦 💖 🐦</div>
-        <h1 id="headline">Hi Zehra...</h1>
+        <h1 id="headline">Heyy Zehraa...</h1>
         <p id="msg-box"></p>
         
         <div class="action-area" id="controls">
-            <p>Will you be mine, Zehra?</p>
+            <p style="font-size: 0.9rem; margin: 5px 0;">Will you be mine, Zehra?</p>
             <div class="btn-wrap">
                 <button id="yesBtn" onclick="celebrate()">YES!</button>
-                <button id="noBtn" onmouseover="teleportNo()" onclick="teleportNo()">No</button>
+                <button id="noBtn" onmouseover="teleportNo()" ontouchstart="teleportNo()">No</button>
             </div>
         </div>
 
-        <div class="signature">
-			<br>
-            I ❤️ U
+        <div id="scratch-container">
+            <div class="secret-message"> A surprise is coming your way by next week! <br> Love You! 💍❤️</div>
+            <canvas id="scratch-canvas"></canvas>
         </div>
+
+        <div class="signature">I ❤️ U </div>
     </div>
 
     <script>
-        const text = "Zehra, you are the most amazing person I know. Every second you made me like I'm your all. So i built this small digital world just for you to ask...";
+        const text = "Zehra, you’ve made me feel like the center of your world, so I crafted this digital sanctuary just for you. You are my most beautiful 'always,' and I want every pixel of my life to be shared with you.";
         let i = 0;
         function typing() {
             if (i < text.length) {
                 document.getElementById("msg-box").innerHTML += text.charAt(i);
                 i++;
-                setTimeout(typing, 50);
+                setTimeout(typing, 45);
             }
         }
         window.onload = typing;
 
         function teleportNo() {
             const noBtn = document.getElementById('noBtn');
-            const x = Math.random() * (window.innerWidth - 100);
-            const y = Math.random() * (window.innerHeight - 50);
+            const x = Math.random() * (window.innerWidth - 80);
+            const y = Math.random() * (window.innerHeight - 40);
             noBtn.style.position = "fixed";
             noBtn.style.left = x + "px";
             noBtn.style.top = y + "px";
         }
 
-let rainInterval; // Variable to store the interval
+        function celebrate() {
+            const music = document.getElementById('loveSong');
+            music.play().catch(e => console.log("Audio blocked"));
 
-function celebrate() {
-    const card = document.getElementById('mainCard');
-    card.innerHTML = `
-        <h1 class="glow-text">I Love You Zehra!</h1>
-        <div class="floating-zehra">Mein aapka Muhammed hein ❤️</div>
-        <div style="font-size: 4rem; margin: 20px 0;">🕊️ 💍 🕊️</div>
-        <p>You've made me the happiest person ever!</p>
-        <p style="font-size: 0.8rem; margin-top: 20px; opacity: 0.8;">Forever yours, Muhammed <br> --to mere pari ladki zerra...--</p>
-    `;
-    card.className = "card celebration-bg";
+            const card = document.getElementById('mainCard');
+            card.className = "card celebration-bg";
+            
+            document.getElementById('headline').innerHTML = " I Love You! Zehra";
+            document.getElementById('headline').classList.add('glow-text');
+            document.getElementById('msg-box').innerHTML = "To mere pari ladki hein Zerra... <br> You've made me so happy! <br>  Mein Aapka Muhammed he ";
+            document.getElementById('controls').style.display = "none";
+            document.getElementById('scratch-container').style.display = "block";
+            
+            initScratchCard();
 
-    // This creates an infinite loop every 150 milliseconds
-    if (!rainInterval) {
-        rainInterval = setInterval(createDrop, 150);
-    }
-}
+            if (!window.rainInterval) {
+                window.rainInterval = setInterval(createDrop, 150);
+            }
+        }
 
-function createDrop() {
-    const container = document.getElementById('rain-container');
-    const drop = document.createElement('div');
-    
-    // Expanded list with more Valentine-themed emojis
-    const items = [
-        '❤️', '💖', '💝', '💕', '🌹', '🌷', '🌸', 
-        '✨', '🦋', '💍', '🥰', '💌', '🍫', '🧸', 
-        'zerra...', 'M❤️Z'
-    ];
-    
-    drop.className = 'rain-item';
-    drop.innerText = items[Math.floor(Math.random() * items.length)];
-    
-    // Randomize horizontal position (0 to 100% of the screen width)
-    drop.style.left = Math.random() * 100 + "vw";
-    
-    // Randomize speed so some fall faster than others
-    const duration = (Math.random() * 2 + 3);
-    drop.style.animationDuration = duration + "s"; 
-    
-    // Add a slight random size for depth
-    drop.style.fontSize = (Math.random() * 1.5 + 1) + "rem";
-    
-    container.appendChild(drop);
-    
-    // Remove the element after it finishes falling to keep the browser fast
-    setTimeout(() => { 
-        drop.remove(); 
-    }, duration * 1000);
-}
+        function initScratchCard() {
+            const canvas = document.getElementById('scratch-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = 180;
+            canvas.height = 80;
+
+            ctx.fillStyle = '#C0C0C0';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#666';
+            ctx.font = '12px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('Scratch for my heart', 90, 45);
+
+            let isDrawing = false;
+
+            function scratch(e) {
+                if (!isDrawing) return;
+                const rect = canvas.getBoundingClientRect();
+                const x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
+                const y = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
+
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.beginPath();
+                ctx.arc(x, y, 12, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            canvas.addEventListener('mousedown', () => isDrawing = true);
+            canvas.addEventListener('touchstart', (e) => { isDrawing = true; e.preventDefault(); });
+            window.addEventListener('mouseup', () => isDrawing = false);
+            window.addEventListener('touchend', () => isDrawing = false);
+            canvas.addEventListener('mousemove', scratch);
+            canvas.addEventListener('touchmove', (e) => { scratch(e); e.preventDefault(); });
+        }
+
+        function createDrop() {
+            const container = document.getElementById('rain-container');
+            const drop = document.createElement('div');
+            const items = ['❤️', '💖', '💝', '💕', 'M❤️Z','Zerraaa...', '🌹', '🌷', '🌸', 
+                '✨', '🦋', '💍', '🥰', '💌', '🍫', '🧸', '💖', '🌹', 'M❤️Z','Zerraaa...', 'M❤️Z','Zerraaa...'];
+            
+            drop.className = 'rain-item';
+            drop.innerText = items[Math.floor(Math.random() * items.length)];
+            drop.style.left = Math.random() * 100 + "vw";
+            const duration = (Math.random() * 2 + 3);
+            drop.style.animationDuration = duration + "s"; 
+            drop.style.fontSize = (Math.random() * 0.8 + 0.8) + "rem";
+            
+            container.appendChild(drop);
+            setTimeout(() => { drop.remove(); }, duration * 1000);
+        }
     </script>
 </body>
 </html>
